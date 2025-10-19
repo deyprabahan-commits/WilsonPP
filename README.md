@@ -66,7 +66,7 @@ Wilson++ is a pure Python implementation. It requires no external libraries.
 
     git clone https://github.com/<deyprabahan-commits>/wilson-pp
     cd wilson-pp
-    python wilson_pp.py
+    python wilson_plus_plus.py
 
 ---
 
