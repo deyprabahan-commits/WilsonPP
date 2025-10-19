@@ -64,7 +64,7 @@ This introduces controllable bias while maintaining the spanning tree property.
 
 Wilson++ is a pure Python implementation. It requires no external libraries.
 
-    git clone https://github.com/<your-username>/wilson-pp
+    git clone https://github.com/<deyprabahan-commits>/wilson-pp
     cd wilson-pp
     python wilson_pp.py
 
@@ -114,7 +114,7 @@ Wilson++: A Non-Uniform, Entropy-Aware, Hierarchically Refined Generalization of
 
 ## License
 
- License. Free to modify and use for research, visualization, or creative works.
+ GPLv3 License. Free to modify and use for research, visualization, or creative works.
 
 ---
 
