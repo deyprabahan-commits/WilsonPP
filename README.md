@@ -64,7 +64,9 @@ This introduces controllable bias while maintaining the spanning tree property.
 
 Wilson++ is a pure Python implementation. It requires no external libraries.
 
-git clone https://github.com/prabahan/wilson-pp.git
+git clone https://github.com/<prabahan>/wilson-pp  
+cd wilson-pp  
+python wilson_plus_plus.py  
 
 ---
 
