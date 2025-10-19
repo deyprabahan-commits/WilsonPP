@@ -138,5 +138,4 @@ Feel free to contribute! Fork the repo, tweak the parameters, improve visualizat
 
 Author 
 
-Prabahan
-Epic maze innovator. 
+Prabahan 
