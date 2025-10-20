@@ -57,58 +57,110 @@ levels (number of refinement layers)
 The included ASCII renderer provides a textual visualization of generated mazes for quick inspection.
 
 
-Installation
-
-Wilson++ is implemented in pure Python and requires no external dependencies.
+Installation & Usage — Wilson++
 
 1. Requirements
 
 Python 3.8 or higher
-Verify by running:
+
+Verify with:
+
 
 python3 --version
 
 
+---
+
 2. Clone the Repository
 
-git clone https://github.com//deyprabahan/WilsonPP.git
+git clone https://github.com/deyprabahan/WilsonPP.git
 cd WilsonPP
 
-3. Run the Algorithm
 
-Execute the script directly from the command line:
+---
+
+3. Run the Algorithm Directly
+
+You can execute the script from inside the repo folder:
 
 python3 wilson_pp.py
 
-The script will generate and print an ASCII-rendered maze to the console.
+This generates and prints an ASCII-rendered maze to the console.
+
+By default, the script uses:
 
 
----
+w, h = 20, 12
+maze = wilson_pp_advanced(w, h, seed=42, meta_cells=4, levels=2)
+print_maze(maze, w, h)
 
-4. Modify Parameters
+You can edit these values in the if __name__ == "__main__": section to change grid size, seed, meta-cell count, or refinement levels.
 
-To adjust grid size, random seed, meta-cell count, or refinement levels, edit the configuration values inside the main section of the script:
-
-if __name__ == "__main__":
-    w, h = 20, 12                # Maze width and height
-    maze = wilson_pp_advanced(
-        w, h, seed=42,           # Random seed
-        meta_cells=4,            # Meta-cell grid size
-        levels=2                 # Number of refinement levels
-    )
-    print_maze(maze, w, h)
 
 
 ---
 
- 5. Import as a Module
+4. Import as a Module in Other Scripts
 
-You can also import Wilson++ functions into your own Python scripts:
+If you want to use Wilson++ functions in your own Python scripts:
+
+1. Make sure your script is inside the WilsonPP folder or the folder is in PYTHONPATH.
+
+
+2. Import like this:
+
+
 
 from wilson_pp import wilson_pp_advanced, print_maze
 
 maze = wilson_pp_advanced(10, 8, seed=123, meta_cells=2, levels=1)
 print_maze(maze, 10, 8)
+
+Works out of the box without extra installation.
+
+
+---
+
+5. Optional: Install as Editable Package
+
+If you want to import Wilson++ anywhere:
+
+1. Create a proper package structure:
+
+
+
+WilsonPP/
+├── wilson_pp/
+│   ├── __init__.py
+│   └── wilson_pp.py
+└── setup.py
+
+2. In setup.py:
+
+
+
+from setuptools import setup, find_packages
+
+setup(
+    name="wilsonpp",
+    version="0.1",
+    packages=find_packages(),
+    python_requires=">=3.8",
+)
+
+3. Install locally:
+
+
+
+pip install -e .
+
+4. Now you can import from anywhere:
+
+
+
+from wilson_pp import wilson_pp_advanced, print_maze
+
+
 
 
 Applications
