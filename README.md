@@ -1,13 +1,14 @@
-
 Wilson++
 
 Wilson++ is an advanced, multi-scale generalization of Wilson’s algorithm for generating spanning trees and maze structures. It introduces adaptive random walks, probabilistic loop retention, and hierarchical refinement to produce highly organic and self-organizing structures. The algorithm balances stochastic exploration with structural coherence, resulting in mazes that resemble naturally evolved networks rather than strictly uniform trees.
+
 
 Overview
 
 Classical Wilson’s algorithm generates uniform spanning trees using loop-erased random walks. While elegant, its uniformity often produces overly regular or homogeneous structures. Wilson++ extends this model by introducing controlled biases and hierarchical refinements that make the generation process context-aware, dynamic, and fractal in nature.
 
 The algorithm begins with multiple seed nodes and grows the tree simultaneously from several regions. Each random walk is guided by adaptive probability weights that respond to the surrounding tree structure, walk history, and local connectivity. This adaptive system allows Wilson++ to balance randomness with order, generating complex structures that maintain both diversity and connectivity.
+
 
 Key Features
 
@@ -40,6 +41,8 @@ Complexity
 
 Although the theoretical complexity remains close to that of Wilson’s original algorithm (O(N log N) in practice), Wilson++ improves empirical runtime through multi-seeding and reduces structural uniformity by introducing controlled local biases. The resulting structures are not strictly uniform spanning trees but approximate them with high entropy and realistic heterogeneity.
 
+
+
 Implementation Notes
 
 Wilson++ is implemented in Python for clarity and experimentation. The code is easily adaptable to other languages or frameworks. Key adjustable parameters include:
@@ -53,40 +56,57 @@ levels (number of refinement layers)
 
 The included ASCII renderer provides a textual visualization of generated mazes for quick inspection.
 
+
 Installation
 
-Wilson++ is implemented in pure Python and requires no external dependencies.
-To install and run the algorithm locally:
+Requirements
 
-1. Ensure you have Python 3.8 or higher installed on your system.
-You can verify this by running the command:
+Python 3.8 or higher.
 
-python --version
+Verify by running:
 
 
-2. Clone or download the repository containing the Wilson++ source code.
-If using Git, run:
+python3 --version
+
+
+---
+
+Clone the Repository
 
 git clone https://github.com/<deyprabahan>/WilsonPP.git
 cd WilsonPP
 
 
-3. No additional setup is required. The algorithm can be executed directly from the command line:
+
+
+
+---
+
+Run Wilson++
+
+The main algorithm file is wilson_pp.py. Run it with:
 
 python3 wilson_pp.py
 
+This will generate and print an ASCII maze in your console.
 
-4. To modify parameters such as grid size, random seed, or refinement levels, edit the configuration values inside the main section of the script:
+
+---
+
+Configure Parameters
+
+You can change the maze size, random seed, meta-cell refinement, and levels by editing the bottom of the script:
 
 if __name__ == "__main__":
-    w, h = 20, 12
-    maze = wilson_pp_advanced(w, h, seed=42, meta_cells=4, levels=2)
+    w, h = 20, 12             # Maze width & height
+    maze = wilson_pp_advanced(
+        w, h,
+        seed=42,              # Random seed
+        meta_cells=4,         # Number of meta-cells
+        levels=2              # Number of refinement levels
+    )
     print_maze(maze, w, h)
 
-
-
-After execution, the algorithm will print an ASCII-rendered maze to the console.
-For larger experiments or visualization, you can adapt the script to save data structures or integrate with graphical frameworks.
 
 Applications
 
