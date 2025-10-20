@@ -1,139 +1,73 @@
-# Wilson++ (Entropy-Aware Spanning Tree Generator)
 
-Wilson++ is a next-generation maze and spanning tree generation algorithm based on a deep generalization of Wilson's algorithm. It introduces entropy-aware random walks, dynamic loop retention, multi-seed initialization, and hierarchical meta-cell refinement. The result is a maze structure that is both organically chaotic and statistically balanced — an emergent harmony between uniformity and structure.
+Wilson++
 
----
+Wilson++ is an advanced, multi-scale generalization of Wilson’s algorithm for generating spanning trees and maze structures. It introduces adaptive random walks, probabilistic loop retention, and hierarchical refinement to produce highly organic and self-organizing structures. The algorithm balances stochastic exploration with structural coherence, resulting in mazes that resemble naturally evolved networks rather than strictly uniform trees.
 
-## Overview
+Overview
 
-Classical Wilson’s algorithm generates a uniform spanning tree via loop-erased random walks. Wilson++ extends this process by adding adaptive intelligence and multi-scale refinement to reduce redundancy, improve distribution, and increase aesthetic complexity. It blends stochastic exploration with structural awareness.
+Classical Wilson’s algorithm generates uniform spanning trees using loop-erased random walks. While elegant, its uniformity often produces overly regular or homogeneous structures. Wilson++ extends this model by introducing controlled biases and hierarchical refinements that make the generation process context-aware, dynamic, and fractal in nature.
 
-Wilson++ can be viewed as a hybrid of Wilson’s algorithm, the Aldous–Broder approach, and multi-level fractal refinement. The result is a high-entropy, low-variance generator suitable for procedural generation, graph sampling, and visualization of emergent connectivity patterns.
+The algorithm begins with multiple seed nodes and grows the tree simultaneously from several regions. Each random walk is guided by adaptive probability weights that respond to the surrounding tree structure, walk history, and local connectivity. This adaptive system allows Wilson++ to balance randomness with order, generating complex structures that maintain both diversity and connectivity.
 
----
+Key Features
 
-## Core Features
+1. Adaptive Weighted Random Walks
+Each step in the random walk is influenced by the neighborhood’s state using three control parameters:
 
-1. Adaptive Weighted Random Walks:
-   Each step of the walk is guided by a probability distribution that depends on local structural cues:
-   - in_tree_count: How many of the node’s neighbors are already in the spanning tree.
-   - in_walk_count: How many are already in the current walk history.
-   - dist_weight: Distance-based bias favoring unexplored frontier regions.
-   The resulting weight function:
-       weight = (1 / (1 + in_tree_count))^α * (1 / (1 + in_walk_count))^β * (1 + γ * (len(neighs) - in_tree_count))
-   where α, β, and γ control the entropy profile of the algorithm.
+Alpha (α): penalizes steps near already-included tree nodes
 
-2. Dynamic Loop Retention:
-   Instead of erasing all loops, Wilson++ probabilistically keeps small loops based on neighborhood complexity. This introduces controlled redundancy and gives the maze an organic texture rather than a purely tree-like rigidity.
+Beta (β): discourages revisiting nodes in the current walk
 
-3. Multi-Seed Initialization:
-   Instead of beginning with a single root cell, Wilson++ initializes multiple random seeds proportional to sqrt(N)/4. This parallel growth reduces expected runtime and increases structural diversity by allowing several clusters to merge naturally.
-
-4. Hierarchical Meta-Cell Refinement:
-   After generating the initial tree, Wilson++ performs multi-level "meta-cell" refinements. These connect local subregions across increasing scales, creating macro-level connectivity and fractal-like balance.
-
-5. Tunable Parameters:
-   α, β, γ → Entropy control for neighbor selection.
-   meta_cells, levels → Scale control for multi-level refinement.
-   seed → Randomness reproducibility.
-
----
-
-## Complexity
-
-Classic Wilson’s algorithm has expected O(N log N) time complexity due to long random walks. Wilson++’s multi-seed and entropy-weighted random walks significantly reduce average walk length, approaching practical O(N) runtime for large grids. Hierarchical refinement adds O(N) overhead, keeping total expected complexity near linear.
-
----
-
-## Conceptual Model
-
-Wilson++ defines a parameterized family of entropy-weighted loop-erased random walks. It interpolates between uniform spanning trees and structured graph growth. Formally, each transition step’s probability is:
-
-    P(next = n) ∝ (1 / (1 + c_tree(n)))^α * (1 / (1 + c_walk(n)))^β * (1 + γ * Δd)
-
-where:
-- c_tree(n) = number of neighbors of n already in the tree
-- c_walk(n) = number of neighbors of n already in current walk
-- Δd = frontier distance factor
-
-This introduces controllable bias while maintaining the spanning tree property.
-
----
-
-## Installation
-
-Wilson++ is a pure Python implementation. It requires no external libraries.
-
-GitHub: https://github.com/prabahan/WilsonPP
-
----
-
-## Usage Example
-
-    from wilson_pp import wilson_pp_advanced, print_maze
-
-    w, h = 20, 12
-    maze = wilson_pp_advanced(w, h, seed=42, meta_cells=4, levels=2)
-    print_maze(maze, w, h)
-
----
-
-## Example Parameters
-
-    α = 2.0        # controls resistance to overcrowded nodes
-    β = 1.5        # controls resistance to re-entry into the same walk
-    γ = 0.5        # controls frontier exploration bias
-    meta_cells = 4 # base refinement block size
-    levels = 2     # number of refinement passes
-
----
-
-## Visualization
-
-The included ASCII renderer prints the generated maze in a readable grid format. Cells are connected using “+”, “|”, and “—” patterns, showing the spanning structure. The mazes tend to show both dense clusters and open corridors, reflecting entropy-aware growth.
-
----
-
-## Theoretical Note
-
-Wilson++ generalizes Wilson’s algorithm by embedding local entropy modulation and hierarchical refinement within loop-erased random walks. It creates a bridge between algorithmic randomness and emergent structure — a new class of entropy-controlled spanning generators.
-
-Mathematically, it can be seen as an entropy-minimized Markov process over grid cells, balancing exploration and consolidation across scales.
-
----
-
-## Credits
-
-Created by Prabahan (2025)
-
-Wilson++: A Non-Uniform, Entropy-Aware, Hierarchically Refined Generalization of Wilson’s Algorithm.
-
----
-
-## License
-
- GPLv3 License. Free to modify and use for research, visualization, or creative works.
-
----
-
-## Future Directions
-
-- Analyze theoretical uniformity limits as α, β, γ → 0.
-- Extend to 3D and higher-dimensional grids.
-- Integrate with Tetra Calculus and non-Euclidean metrics.
-- Formalize entropy measure for maze complexity.
-
----
-
----
-
-Contribution 
-
-Feel free to contribute! Fork the repo, tweak the parameters, improve visualization, or implement new features. All contributions are welcome under GPLv3.
+Gamma (γ): encourages exploration of underconnected regions
+This results in non-uniform exploration that naturally avoids redundant loops while maintaining structural balance.
 
 
----
 
-Author 
+2. Probabilistic Loop Retention
+Unlike the strict loop-erasure in classical Wilson’s algorithm, Wilson++ dynamically decides whether to keep or erase a loop based on local complexity. The retention probability depends on the number of available neighbors, allowing the algorithm to occasionally preserve loops, leading to labyrinth-like, semi-cyclic formations.
 
-Prabahan 
+
+3. Multi-Seed Initialization
+Instead of a single root, Wilson++ initializes several seed cells proportional to the square root of the grid size. This accelerates convergence and allows for parallelized growth of independent substructures that eventually merge, reducing average runtime on large grids.
+
+
+4. Hierarchical Meta-Cell Refinement
+After the main tree is constructed, the algorithm performs multi-level refinement on localized cell clusters. Each level applies internal random reconnections within meta-cells of decreasing size, introducing fractal-like detail and local irregularity without breaking overall connectivity. This refinement produces visually and topologically rich mazes resembling organic systems such as root networks, city patterns, or neuronal clusters.
+
+
+
+Complexity
+
+Although the theoretical complexity remains close to that of Wilson’s original algorithm (O(N log N) in practice), Wilson++ improves empirical runtime through multi-seeding and reduces structural uniformity by introducing controlled local biases. The resulting structures are not strictly uniform spanning trees but approximate them with high entropy and realistic heterogeneity.
+
+Implementation Notes
+
+Wilson++ is implemented in Python for clarity and experimentation. The code is easily adaptable to other languages or frameworks. Key adjustable parameters include:
+
+alpha, beta, gamma (control exploration and bias)
+
+meta_cells (defines the granularity of hierarchical refinement)
+
+levels (number of refinement layers)
+
+
+The included ASCII renderer provides a textual visualization of generated mazes for quick inspection.
+
+Applications
+
+Wilson++ can be applied in a wide range of domains, including:
+
+Procedural maze and level generation in games and simulations
+
+Synthetic modeling of biological or urban growth patterns
+
+Visualization of stochastic optimization and self-organizing systems
+
+Research on biased random walks, spanning forests, and entropy-based network formation
+
+
+License and citation 
+
+Wilson++ is released under GPLV3 for academic and experimental use. When referencing this work, please cite Wilson++ like this:
+
+Prabahan (2025). Wilson++
