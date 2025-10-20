@@ -71,7 +71,7 @@ python3 --version
 
 2. Clone the Repository
 
-git clone https://github.com/deyprabahan/WilsonPP.git
+git clone https://github.com//deyprabahan/WilsonPP.git
 cd WilsonPP
 
 3. Run the Algorithm
