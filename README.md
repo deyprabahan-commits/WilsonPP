@@ -53,6 +53,41 @@ levels (number of refinement layers)
 
 The included ASCII renderer provides a textual visualization of generated mazes for quick inspection.
 
+Installation
+
+Wilson++ is implemented in pure Python and requires no external dependencies.
+To install and run the algorithm locally:
+
+1. Ensure you have Python 3.8 or higher installed on your system.
+You can verify this by running the command:
+
+python --version
+
+
+2. Clone or download the repository containing the Wilson++ source code.
+If using Git, run:
+
+git clone https://github.com/<deyprabahan>/WilsonPP.git
+cd WilsonPP
+
+
+3. No additional setup is required. The algorithm can be executed directly from the command line:
+
+python3 wilson_pp.py
+
+
+4. To modify parameters such as grid size, random seed, or refinement levels, edit the configuration values inside the main section of the script:
+
+if __name__ == "__main__":
+    w, h = 20, 12
+    maze = wilson_pp_advanced(w, h, seed=42, meta_cells=4, levels=2)
+    print_maze(maze, w, h)
+
+
+
+After execution, the algorithm will print an ASCII-rendered maze to the console.
+For larger experiments or visualization, you can adapt the script to save data structures or integrate with graphical frameworks.
+
 Applications
 
 Wilson++ can be applied in a wide range of domains, including:
