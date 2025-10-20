@@ -59,53 +59,56 @@ The included ASCII renderer provides a textual visualization of generated mazes 
 
 Installation
 
-Requirements
+Wilson++ is implemented in pure Python and requires no external dependencies.
 
-Python 3.8 or higher.
+1. Requirements
 
+Python 3.8 or higher
 Verify by running:
-
 
 python3 --version
 
 
----
+2. Clone the Repository
 
-Clone the Repository
-
-git clone https://github.com/<deyprabahan>/WilsonPP.git
+git clone https://github.com/deyprabahan/WilsonPP.git
 cd WilsonPP
 
+3. Run the Algorithm
 
-
-
-
----
-
-Run Wilson++
-
-The main algorithm file is wilson_pp.py. Run it with:
+Execute the script directly from the command line:
 
 python3 wilson_pp.py
 
-This will generate and print an ASCII maze in your console.
+The script will generate and print an ASCII-rendered maze to the console.
 
 
 ---
 
-Configure Parameters
+4. Modify Parameters
 
-You can change the maze size, random seed, meta-cell refinement, and levels by editing the bottom of the script:
+To adjust grid size, random seed, meta-cell count, or refinement levels, edit the configuration values inside the main section of the script:
 
 if __name__ == "__main__":
-    w, h = 20, 12             # Maze width & height
+    w, h = 20, 12                # Maze width and height
     maze = wilson_pp_advanced(
-        w, h,
-        seed=42,              # Random seed
-        meta_cells=4,         # Number of meta-cells
-        levels=2              # Number of refinement levels
+        w, h, seed=42,           # Random seed
+        meta_cells=4,            # Meta-cell grid size
+        levels=2                 # Number of refinement levels
     )
     print_maze(maze, w, h)
+
+
+---
+
+ 5. Import as a Module
+
+You can also import Wilson++ functions into your own Python scripts:
+
+from wilson_pp import wilson_pp_advanced, print_maze
+
+maze = wilson_pp_advanced(10, 8, seed=123, meta_cells=2, levels=1)
+print_maze(maze, 10, 8)
 
 
 Applications
