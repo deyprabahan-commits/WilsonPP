@@ -71,9 +71,9 @@ python3 --version
 
 ---
 
-2. Download the Repository
+2. Download Wilson++
 
-https://github.com/deyprabahan-commits/WilsonPP/blob/main/README.md
+https://github.com/deyprabahan-commits/WilsonPP/blob/main/wilson_pp.py
 
 
 ---
