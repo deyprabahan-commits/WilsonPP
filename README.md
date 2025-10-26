@@ -71,10 +71,9 @@ python3 --version
 
 ---
 
-2. Clone the Repository
+2. Download the Repository
 
-git clone https://github.com/deyprabahan/WilsonPP.git
-cd WilsonPP
+https://github.com/deyprabahan-commits/WilsonPP/blob/main/README.md
 
 
 ---
